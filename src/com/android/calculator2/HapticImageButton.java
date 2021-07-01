@@ -19,45 +19,18 @@ package com.android.calculator2;
 import android.widget.ImageButton;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.MotionEvent;
-import android.view.HapticFeedbackConstants;
 
 /**
- * A basic ImageButton that vibrates on finger down.
+ * A basic ImageButton that vibrates on touch down.
  */
 public class HapticImageButton extends ImageButton {
     public HapticImageButton(Context context) {
         super(context);
-        initVibration(context);
+        HapticButton.setupVibration(this);
     }
 
     public HapticImageButton(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initVibration(context);
-    }
-
-    public HapticImageButton(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initVibration(context);
-    }
-
-    public HapticImageButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        initVibration(context);
-    }
-
-    private void initVibration(Context context) {
-        setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                }
-
-                // Passthrough
-                return false;
-            }
-        });
+        HapticButton.setupVibration(this);
     }
 }
